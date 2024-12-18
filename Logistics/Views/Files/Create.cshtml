@@ -1,0 +1,35 @@
+﻿@model FileServer.Models.FileModel
+
+@{
+    ViewData["Title"] = "Создание";
+}
+
+<div class="container mt-5">
+    <div class="card shadow-lg">
+        <div class="card-header bg-primary text-white">
+            <h2 class="mb-0">Выберите файл для загрузки</h2>
+        </div>
+        <div class="card-body">
+            <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+            <form asp-action="Create" enctype="multipart/form-data">
+                <div class="mb-3">
+                    <label for="uploadedFile" class="form-label">Файл</label>
+                    <input type="file" name="uploadedFile" id="uploadedFile" class="form-control custom-file-input" />
+                </div>
+
+                <div class="d-flex justify-content-between">
+                    <a asp-action="Index" class="btn custom-btn-secondary">Назад</a>
+                    <button type="submit" class="btn custom-btn-success">Добавить</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
+

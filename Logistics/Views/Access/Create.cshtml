@@ -1,0 +1,67 @@
+﻿@model FileServer.Models.AccessModel
+
+@{
+    ViewData["Title"] = "Создание";
+}
+
+<div class="container mt-5">
+    <div class="card shadow">
+        <div class="card-header bg-primary text-white">
+            <h2 class="mb-0">Добавление</h2>
+        </div>
+        <div class="card-body">
+            <form asp-action="Create">
+                <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+                <div class="mb-3">
+                    <label asp-for="UserModelId" class="form-label"></label>
+                    <select asp-for="UserModelId" class="form-select">
+                        @foreach (var item in ViewBag.Employee)
+                        {
+                            <option value="@item.Id">@item.Login</option>
+                        }
+                    </select>
+                    <span asp-validation-for="UserModelId" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="FileModelId" class="form-label"></label>
+                    <select asp-for="FileModelId" class="form-select">
+                        @foreach (var item in ViewBag.Files)
+                        {
+                            <option value="@item.Id">@item.Name</option>
+                        }
+                    </select>
+                    <span asp-validation-for="FileModelId" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="AccessLevel" class="form-label"></label>
+                    <select asp-for="AccessLevel" class="form-select">
+                        @foreach (var item in ViewBag.Radio)
+                        {
+                            <option value="@item.Id">@item.Name</option>
+                        }
+                    </select>
+                    <span asp-validation-for="AccessLevel" class="text-danger"></span>
+                </div>
+
+                <!-- Измененные кнопки -->
+                <div class="d-grid">
+                    <button type="submit" class="btn custom-btn">Добавить</button>
+                </div>
+            </form>
+        </div>
+        <div class="card-footer text-center">
+            <a asp-action="Index" class="btn custom-btn-secondary">Назад</a>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
+
+

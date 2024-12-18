@@ -1,0 +1,43 @@
+﻿@model Employee.Views.RegisterModel
+
+<div class="container mt-5">
+    <div class="card shadow-lg">
+        <div class="card-header bg-primary text-white">
+            <h2 class="mb-0">Регистрация</h2>
+        </div>
+        <div class="card-body">
+            <form asp-action="Register" asp-controller="Account" asp-anti-forgery="true">
+                <div class="text-danger mb-3" asp-validation-summary="ModelOnly"></div>
+
+                <div class="mb-3">
+                    <label asp-for="Login" class="form-label">Введите логин</label>
+                    <input class="form-control custom-input" type="text" asp-for="Login" />
+                    <span class="text-danger" asp-validation-for="Login"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Password" class="form-label">Введите пароль</label>
+                    <input class="form-control custom-input" type="password" asp-for="Password" />
+                    <span class="text-danger" asp-validation-for="Password"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="ConfirmPassword" class="form-label">Повторите пароль</label>
+                    <input class="form-control custom-input" type="password" asp-for="ConfirmPassword" />
+                    <span class="text-danger" asp-validation-for="ConfirmPassword"></span>
+                </div>
+
+                <div class="d-flex justify-content-end">
+                    <button type="submit" class="btn custom-btn-success">Регистрация</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
+
